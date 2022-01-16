@@ -1,6 +1,7 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
 import React from 'react';
+import Image from 'next/image';
+import Head from '../components/Head';
+import { AnimatePresence, motion } from 'framer-motion';
 import '@fontsource/plus-jakarta-sans';
 
 export default function Home() {
@@ -11,11 +12,16 @@ export default function Home() {
 		setIdea(body.idea);
 	};
 	
-	return (
-		<div className='h-screen bg-gradient-to-b from-blue-800 to-rose-600 flex flex-col text-center text-slate-200 space-y-4 sm:space-y-6 lg:space-y-8 pt-32'>
+	return (<>
+		<Head></Head>
+		<div className='min-h-screen h-full bg-gradient-to-b from-blue-800 to-rose-600 flex flex-col text-center 
+						items-center text-slate-200 space-y-4 sm:space-y-6 lg:space-y-8 pt-32 px-10'>
 			<Image src='/icon.svg' width='150' height='150' className='scale-75 sm:scale-90 lg:scale-100' alt=''></Image>
-			<div className='font-extrabold text-3xl sm:text-5xl lg:text-7xl px-10 tracking-tight'>
+			<div className='font-extrabold text-3xl sm:text-5xl lg:text-7xl tracking-tight'>
 				Hackathon Idea Generator
+			</div>
+			<div className='text-xl sm:text-2xl lg:text-3xl tracking-tight'>
+				Want more hackathon ideas? Let Rosebot think of ideas for you.
 			</div>
 			<div>
 				<motion.button 
@@ -32,9 +38,10 @@ export default function Home() {
 					animate={{ y: 0, opacity: 1 }}
 					exit={{ y: 30, opacity: 0, transition: { duration: .5 } }}
 					transition={{ duration: .5 }}
-					className='text-xl sm:text-3xl lg:text-5xl tracking-tight'
+					className='text-xl sm:text-3xl lg:text-5xl lg:w-[80rem] max-w-fit'
 				>{idea}</motion.div>}
 			</AnimatePresence>
 		</div>
+	</>
 	);
 }
